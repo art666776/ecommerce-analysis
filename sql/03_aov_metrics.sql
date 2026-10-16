@@ -1,13 +1,5 @@
--- =====================================================================
--- ЭТАП 3. Метрики — AOV (общий, по категориям, по штатам)
--- =====================================================================
--- Запросы независимы, выполняются по одному:
--- раскомментируйте нужный SELECT внизу.
--- =====================================================================
-
 with
-
--- Сумма каждого заказа (факт оплаты, order_payments — а не номинал order_items)
+-- Сумма каждого заказа 
 order_sum as (
     select op.order_id, sum(op.payment_value) as order_value
     from order_payments op
@@ -22,7 +14,7 @@ order_aov as (
     from order_sum
 ),
 
--- AOV по категориям (средний чек позиции — не заказа; считается через order_items)
+-- AOV по категориям 
 category_aov as (
     select
         ct.product_category_name_english,
@@ -37,7 +29,7 @@ category_aov as (
     order by category_value desc
 ),
 
--- AOV по штатам клиента (средний чек заказа, построен поверх order_sum)
+-- AOV по штатам клиента 
 state_aov as (
     select
         c.customer_state,
@@ -50,10 +42,8 @@ state_aov as (
     order by state_value desc
 )
 
--- =====================================================================
--- Раскомментируйте ОДИН из следующих SELECT
--- =====================================================================
 
+-- Раскомментируйте ОДИН из следующих SELECT
 select * from order_aov;
 -- select * from category_aov;
 -- select * from state_aov;
