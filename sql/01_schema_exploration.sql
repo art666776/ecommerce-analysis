@@ -59,7 +59,7 @@ data_quality_checks as (
     select 'null_order_purchase_timestamp', count(*) from orders where order_purchase_timestamp is null
 )
 
--- Раскомментируйте ОДИН из следующих SELECT, чтобы посмотреть результат
+-- Раскомментируйте 1 из следующих SELECT, чтобы посмотреть результат
 
 select * from order_status_breakdown;
 -- select * from date_range;
