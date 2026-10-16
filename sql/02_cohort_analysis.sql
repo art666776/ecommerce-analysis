@@ -1,5 +1,4 @@
 with
-
 -- 1. Когорта каждого клиента = месяц его первого delivered-заказа
 first_order as (
     select
